@@ -16,9 +16,6 @@ apt-get upgrade
 apt-get dist-upgrade
 ```
 ```
-sudo su
-```
-```
 apt-get update
 ```
 ```
