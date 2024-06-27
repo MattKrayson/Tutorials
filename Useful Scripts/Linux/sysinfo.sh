@@ -7,7 +7,7 @@ cpu_frequencies=$(grep MHz /proc/cpuinfo | awk '{print $4}')
 cpu_temperatures=$(sensors | grep 'Core' | awk '{print $3}')
 
 # Get network activity (adjust 'eth0' to your network interface)
-network_activity=$(ifstat -i en01 0.1 1 | awk 'NR==3 {print $1, $2}')
+network_activity=$(ifstat -i eno1 0.1 1 | awk 'NR==3 {print $1, $2}')
 
 # Print headers for readability
 echo -e "CPU MHz   |   Temp   |   RX |  TX"
