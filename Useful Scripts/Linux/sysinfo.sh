@@ -1,3 +1,16 @@
+#!/bin/bash
+# This script displays CPU frequencies, temperatures, and network statistics for a user-selected interface
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check if ifstat is installed
+if ! command_exists ifstat; then
+    echo "Error: ifstat is not installed. Please install it and try again."
+    exit 1
+fi
 
 # Get CPU frequencies
 cpu_frequencies=$(grep MHz /proc/cpuinfo | awk '{print $4}')
@@ -29,5 +42,3 @@ echo "----------|----------|--------|--------"
 
 # Combine the output and format as a table
 paste <(echo "$cpu_frequencies") <(echo "$cpu_temperatures") <(ifstat -i $selected_interface | awk 'NR==3 {print $1, $2}') <(ifstat -i $selected_interface | awk 'NR==3 {print $3, $4}') | column -t
-# Run NVIDIA command
-nvidia-smi
