@@ -14,4 +14,4 @@ echo -e "CPU MHz   |   Temp   |
 echo -e "----------|----------|
 
 # Combine the output and format as a table
-paste <(echo "$cpu_frequencies") <(echo "$cpu_temperatures") <(echo "$network_activity") #| awk -F'\t' '{printf "%-8s  | %-7s  | %-5s  %-5s \n"  , $1, $2, $3, $4}'
+paste <(echo "$cpu_frequencies") <(echo "$cpu_temperatures") #<(echo "$network_activity") | awk -F'\t' '{printf "%-8s  | %-7s  | %-5s  %-5s \n"  , $1, $2, $3, $4}'
