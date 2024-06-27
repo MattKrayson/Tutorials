@@ -54,3 +54,4 @@ if command -v nvidia-smi &> /dev/null; then
 fi
 
 echo "Done."
+ 
