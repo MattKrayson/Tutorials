@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script requires lm-sensors and ifstat to be installed
+# This script fetches CPU frequencies and temperatures
 
 # Get CPU frequencies
 cpu_frequencies=$(grep MHz /proc/cpuinfo | awk '{print $4}')
@@ -8,8 +8,8 @@ cpu_frequencies=$(grep MHz /proc/cpuinfo | awk '{print $4}')
 cpu_temperatures=$(sensors | grep 'Core' | awk '{print $3}')
 
 # Print headers for readability
-echo -e "CPU MHz   |   Temp   |"
-echo -e "----------|----------|"
+echo "CPU MHz   |   Temp   |"
+echo "----------|----------|"
 
 # Combine the output and format as a table
-paste <(echo "$cpu_frequencies") <(echo "$cpu_temperatures")
+paste <(echo "$cpu_frequencies") <(echo "$cpu_temperatures") | column -t
